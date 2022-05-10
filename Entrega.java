@@ -26,9 +26,9 @@ import java.util.Set;
  *
  * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
- * - Nom 1:
- * - Nom 2:
- * - Nom 3:
+ * - Nom 1: Josep Gabrien Fornés Reynés
+ * - Nom 2: Antoni Bonet 
+ * - Nom 3: Marc Sampol
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
@@ -59,7 +59,7 @@ class Entrega {
         Predicate<Integer> q,
         Predicate<Integer> r) {
 
-      return false; // TO DO
+      return true; // TO DO
     }
 
     /*
