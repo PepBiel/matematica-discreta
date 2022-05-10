@@ -59,7 +59,36 @@ class Entrega {
         Predicate<Integer> q,
         Predicate<Integer> r) {
 
-      return false; // TO DO
+            boolean a = true;
+            boolean b = true;
+            boolean fin = true;
+            
+            for (int i = 0;(fin) && i < universe.length; i++){
+                
+                Integer in = universe[i];              
+
+                for (int j = 0;(fin) && (j < universe.length); j++){
+
+                    Integer jn = universe[j];
+
+                    if(!(p.test(in, jn))){
+                        a = false;
+                    }
+
+                    if (!(q.test(in)) && (r.test(jn))){
+                        b = false;
+                    }
+
+                    if((a) && (!(b))){
+                        fin = false;
+                    }
+
+                }
+                
+                
+            }
+
+      return fin; // TO DO
     }
 
     /*
@@ -361,6 +390,10 @@ class Entrega {
   public static void main(String[] args) {
     Tema1.tests();
     Tema2.tests();
+    Tema1.exercici1(new int[] { -2, -1, 0, 1, 2, 3 },
+    (x, y) -> x * y >= 0,
+    x -> x >= 0,
+    x -> x >= 0);
   }
 
   static void assertThat(boolean b) {
