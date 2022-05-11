@@ -87,7 +87,7 @@ class Entrega {
                 
                 
             }
-
+        System.out.println(fin);
       return fin; // TO DO
     }
 
@@ -389,11 +389,7 @@ class Entrega {
    */
   public static void main(String[] args) {
     Tema1.tests();
-    Tema2.tests();
-    Tema1.exercici1(new int[] { -2, -1, 0, 1, 2, 3 },
-    (x, y) -> x * y >= 0,
-    x -> x >= 0,
-    x -> x >= 0);
+   // Tema2.tests();
   }
 
   static void assertThat(boolean b) {
