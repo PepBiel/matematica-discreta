@@ -63,19 +63,19 @@ class Entrega {
             boolean b = true;
             boolean fin = true;
             
-            for (int i = 0;(fin) && i < universe.length; i++){
+            for (int x = 0;(fin) && x < universe.length; x++){
                 
-                Integer in = universe[i];              
+                Integer xn = universe[x];              
 
-                for (int j = 0;(fin) && (j < universe.length); j++){
+                for (int y = 0;(fin) && (y < universe.length); y++){
 
-                    Integer jn = universe[j];
+                    Integer yn = universe[y];
 
-                    if(!(p.test(in, jn))){
+                    if(!(p.test(xn, yn))){
                         a = false;
                     }
 
-                    if (!(q.test(in)) && (r.test(jn))){
+                    if (!(q.test(xn)) && (r.test(yn))){
                         b = false;
                     }
 
@@ -87,6 +87,7 @@ class Entrega {
                 
                 
             }
+            System.out.println("Exercici 1");
         System.out.println(fin);
       return fin; // TO DO
     }
@@ -95,7 +96,34 @@ class Entrega {
      * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
      */
     static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
-      return false; // TO DO
+      
+        boolean fin = false;
+        
+
+        for (int x = 0; (!fin) && (x < universe.length); x++){
+            
+            int xn = universe[x];
+
+            for (int y = 0; (!fin) && (y < universe.length); y++){
+
+                int yn = universe[y];
+                int cont = 0;
+
+                if (!((q.test(yn) == true) && (p.test(xn) == false))){
+                    cont++;
+                }
+
+                if (cont == universe.length){
+                    fin = true;
+                }
+
+            }
+
+        }
+      
+        System.out.println("Exercici 2");
+      System.out.println(fin);
+        return fin; // TO DO
     }
 
     /*
@@ -121,7 +149,6 @@ class Entrega {
     static void tests() {
       // Exercici 1
       // ∀x,y. P(x,y) -> Q(x) ^ R(y)
-
       assertThat(
           exercici1(
               new int[] { 2, 3, 5, 6 },
@@ -142,7 +169,6 @@ class Entrega {
 
       // Exercici 2
       // ∃!x. ∀y. Q(y) -> P(x) ?
-
       assertThat(
           exercici2(
               new int[] { -1, 1, 2, 3, 4 },
