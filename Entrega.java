@@ -243,19 +243,19 @@ class Entrega {
         // Exercici 4
         // És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
   
-        assertThat(
+        /*assertThat(
             exercici4(
                 new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
                 11
             )
-        );
+        );*/
   
-        assertThat(
+        /*assertThat(
             !exercici4(
                 new int[] { 0, 5, 7 },
                 13
             )
-        );
+        );*/
       }
     }
 
@@ -275,32 +275,32 @@ class Entrega {
    * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
    * x és un enter d'a i el resultat f.apply(x) és un enter de b).
    */
-  static class Tema2 {
+  //static class Tema2 {
     /*
      * És `p` una partició d'`a`?
      *
      * `p` és un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
-    static boolean exercici1(int[] a, int[][] p) {
+    /*static boolean exercici1(int[] a, int[][] p) {
       return false; // TO DO
-    }
+    }*/
 
     /*
      * Comprovau si la relació `rel` definida sobre `a` és un ordre parcial i que `x` n'és el mínim.
      *
      * Podeu soposar que `x` pertany a `a` i que `a` està ordenat de menor a major.
      */
-    static boolean exercici2(int[] a, int[][] rel, int x) {
+    /*static boolean exercici2(int[] a, int[][] rel, int x) {
       return false; // TO DO
-    }
+    }*/
 
     /*
      * Suposau que `f` és una funció amb domini `dom` i codomini `codom`.  Trobau l'antiimatge de
      * `y` (ordenau el resultat de menor a major, podeu utilitzar `Arrays.sort()`). Podeu suposar
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
-    static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
+    /*static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
       return new int[]{}; // TO DO
     }
 
@@ -314,7 +314,7 @@ class Entrega {
      * Podeu suposar que `dom` i `codom` estàn ordenats de menor a major. Per comoditat, podeu
      * utilitzar les constants definides a continuació:
      */
-    static final int NOTHING_SPECIAL = 0;
+    /*static final int NOTHING_SPECIAL = 0;
     static final int INJECTIVE = 1;
     static final int SURJECTIVE = 2;
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
@@ -326,7 +326,7 @@ class Entrega {
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
-    static void tests() {
+    /*static void tests() {
       // Exercici 1
       // `p` és una partició d'`a`?
 
@@ -448,7 +448,7 @@ class Entrega {
           == NOTHING_SPECIAL
       );
     }
-  }
+  }*/
 
   /*
    * Aquí teniu els exercicis del Tema 3 (Aritmètica).
@@ -591,7 +591,7 @@ class Entrega {
    */
   public static void main(String[] args) {
     Tema1.tests();
-    Tema2.tests();
+    //Tema2.tests();
     Tema3.tests();
   }
 
