@@ -118,6 +118,8 @@ class Entrega {
 
                 }
 
+                cont = 0;
+
             }
 
             if (cont2 == 1) {
@@ -136,33 +138,42 @@ class Entrega {
          */
         static boolean exercici3(int[][] universe) {
 
-            int cont = 0;
+            boolean existe = false;
+
             boolean fin = false;
-
             for (int[] y : universe) {
-
                 for (int[] x : universe) {
-
-                    for (int i = 0; i < universe.length; i++){
-
-                        for (int j = 0; j < universe.length; j++){
-                            
-                            if (y[j] == x[i]){
-                                cont++;
+                    if (x.length < y.length) {
+                        existe = false;
+                    } else {
+                        int n = 0;
+                        for (int i = 0; i < y.length && n != y.length; i++) {
+                            for (int j = 0; j < x.length; j++) {
+                                if (y[i] == x[j]) {
+                                    n++;
+                                }
                             }
-                            
+                            if (n == y.length) {
+                                existe = true;
+                                break;
+                            } else {
+                                existe = false;
+                            }
                         }
                     }
-                
                 }
+                if (!existe) {
+                    fin = false;
+                    System.out.println("Exercici 3 Tema 1: " + !fin);
+                    return !fin;
+                } else {
+                    fin = true;
+                }
+
             }
 
-            if (cont == universe.length){
-                fin = true;
-            }
-
-            System.out.println("Exercici 3: " + fin);
-
+            fin = !fin;
+            System.out.println("Exercici 3 Tema 1: " + fin);
             return fin; // TO DO
         }
 
@@ -467,7 +478,7 @@ class Entrega {
             }
             res = a;
         }
-        System.out.println("Exercici 1: " + res);
+        System.out.println("Exercici 1 tema 3: " + res);
       return res; // TO DO
     }
 
@@ -477,7 +488,31 @@ class Entrega {
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
     static boolean exercici2(int a, int b, int c) {
-      return false; // TO DO
+        int res = 0;
+        boolean fin = false;
+        if ((!fin) && (a >= b)){
+            fin = true;
+            while (!(a % b == 0)){
+                a = b;
+                b = (a % b);
+            }
+            res = b;
+        }else if((!fin) && (a < b)){
+            fin = true;
+            while (!(b % a == 0)){
+                b = a;
+                a = (b % a);
+            }
+            res = a;
+        }
+
+        if ((res % c) == 0){
+            fin = true;
+        }else{
+            fin = false;
+        }
+
+      return fin; // TO DO
     }
 
     /*
@@ -486,6 +521,33 @@ class Entrega {
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
     static int exercici3(int a, int n) {
+
+        int res = 0;
+        boolean fin = false;
+        if ((!fin) && (a >= n)){
+            fin = true;
+            while (!(a % n == 0)){
+                a = n;
+                n = (a % n);
+            }
+            res = n;
+        }else if((!fin) && (a < n)){
+            fin = true;
+            while (!(n % a == 0)){
+                n = a;
+                a = (n % a);
+            }
+            res = a;
+        }
+
+        if (res == 1){
+            fin = true;
+        }else{
+            fin = false;
+        }
+
+        //ACABAR     RESOLDRE     AX = 1 (MOD N)
+
       return -1; // TO DO
     }
 
