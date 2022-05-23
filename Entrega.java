@@ -275,7 +275,7 @@ class Entrega {
    * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
    * x és un enter d'a i el resultat f.apply(x) és un enter de b).
    */
-  //static class Tema2 {
+    static class Tema2 {
     /*
      * És `p` una partició d'`a`?
      *
@@ -300,7 +300,8 @@ class Entrega {
      * `y` (ordenau el resultat de menor a major, podeu utilitzar `Arrays.sort()`). Podeu suposar
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
-    /*static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
+    static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
+
       return new int[]{}; // TO DO
     }
 
@@ -314,19 +315,20 @@ class Entrega {
      * Podeu suposar que `dom` i `codom` estàn ordenats de menor a major. Per comoditat, podeu
      * utilitzar les constants definides a continuació:
      */
-    /*static final int NOTHING_SPECIAL = 0;
+    static final int NOTHING_SPECIAL = 0;
     static final int INJECTIVE = 1;
     static final int SURJECTIVE = 2;
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
+    
       return -1; // TO DO
     }
 
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
-    /*static void tests() {
+     static void tests() {
       // Exercici 1
       // `p` és una partició d'`a`?
 
@@ -448,7 +450,7 @@ class Entrega {
           == NOTHING_SPECIAL
       );
     }
-  }*/
+  }
 
   /*
    * Aquí teniu els exercicis del Tema 3 (Aritmètica).
