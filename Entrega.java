@@ -26,9 +26,9 @@ import java.util.Set;
  *
  * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
- * - Nom 1:
- * - Nom 2:
- * - Nom 3:
+ * - Nom 1: Josep Gabriel Fornés Reynés
+ * - Nom 2: Antoni Bonet Trujillo
+ * - Nom 3: Marc Sampol 
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
@@ -181,7 +181,88 @@ class Entrega {
          * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
          */
         static boolean exercici4(int[] universe, int n) {
-            return false; // TO DO
+            
+            boolean fin = false;
+            int cont = 0;
+            int mcd;
+
+            for (int y = 0; (y < universe.length); y++) {
+
+                int yn = universe[y];
+
+                for (int x = 0; (x < universe.length); x++) {
+
+                    int xn = universe[x];
+
+                    if ((!fin) && ((yn * xn) >= n)){
+                        int x_gran = 1;
+                        int x_petit = 0;
+                        int x_ = 0;
+                        int y_gran = 0;
+                        int y_petit = 1;
+                        int y_ = 0;
+                        int q_gran;
+                        int q_petit;
+                        while (!((yn * xn) % n == 0)){
+                            q_petit = (yn * xn) / n;
+        
+                            x_ = x_gran - (x_petit * q_petit);
+                            y_ = y_gran - (y_petit * q_petit);
+        
+                            x_gran = x_petit;
+                            x_petit = x_;
+        
+                            y_gran = y_petit;
+                            y_petit = y_;
+        
+                            q_gran = q_petit;
+                        }
+                        //y ha de ser negativa
+                        mcd = ((xn * yn) * x_) - (n * y_);
+                        if ((mcd % 1) == 0){
+                            cont++;
+                        }
+                    }
+
+                    if((fin) && ((yn * xn) < n)){
+                        int x_gran = 0;
+                        int x_petit = 1;
+                        int x_ = 0;
+                        int y_gran = 1;
+                        int y_petit = 0;
+                        int y_ = 0;
+                        int q_gran;
+                        int q_petit;
+                        while (!(n % (yn * xn) == 0)){
+                            q_petit = n / (yn * xn);
+        
+                            x_ = x_gran - (x_petit * q_petit);
+                            y_ = y_gran - (y_petit * q_petit);
+        
+                            x_gran = x_petit;
+                            x_petit = x_;
+        
+                            y_gran = y_petit;
+                            y_petit = y_;
+        
+                            q_gran = q_petit;
+                        }
+                        //y ha de ser negativa
+                        mcd = ((xn * yn) * x_) - (n * y_);
+                        if ((mcd % 1) == 0){
+                            cont++;
+                        }
+                    }
+
+                }
+
+            }
+
+            if (cont == 1) {
+                fin = true;
+            }
+
+            return fin; // TO DO
         }
 
 
@@ -243,19 +324,19 @@ class Entrega {
         // Exercici 4
         // És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
   
-        /*assertThat(
+        assertThat(
             exercici4(
                 new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
                 11
             )
-        );*/
+        );
   
-        /*assertThat(
+        assertThat(
             !exercici4(
                 new int[] { 0, 5, 7 },
                 13
             )
-        );*/
+        );
       }
     }
 
@@ -275,25 +356,25 @@ class Entrega {
    * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
    * x és un enter d'a i el resultat f.apply(x) és un enter de b).
    */
-    static class Tema2 {
+  static class Tema2 {
     /*
      * És `p` una partició d'`a`?
      *
      * `p` és un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
-    /*static boolean exercici1(int[] a, int[][] p) {
+    static boolean exercici1(int[] a, int[][] p) {
       return false; // TO DO
-    }*/
+    }
 
     /*
      * Comprovau si la relació `rel` definida sobre `a` és un ordre parcial i que `x` n'és el mínim.
      *
      * Podeu soposar que `x` pertany a `a` i que `a` està ordenat de menor a major.
      */
-    /*static boolean exercici2(int[] a, int[][] rel, int x) {
+    static boolean exercici2(int[] a, int[][] rel, int x) {
       return false; // TO DO
-    }*/
+    }
 
     /*
      * Suposau que `f` és una funció amb domini `dom` i codomini `codom`.  Trobau l'antiimatge de
@@ -301,7 +382,6 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-
       return new int[]{}; // TO DO
     }
 
@@ -321,14 +401,13 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-    
       return -1; // TO DO
     }
 
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
-     static void tests() {
+    static void tests() {
       // Exercici 1
       // `p` és una partició d'`a`?
 
@@ -524,33 +603,14 @@ class Entrega {
      */
     static int exercici3(int a, int n) {
 
-        int res = 0;
-        boolean fin = false;
-        if ((!fin) && (a >= n)){
-            fin = true;
-            while (!(a % n == 0)){
-                a = n;
-                n = (a % n);
+        int inversa = -1;
+        for (int i = 0;(inversa == -1) && (i < n); i++){
+            if(((a * i) % n) == 1){
+                inversa = i;
             }
-            res = n;
-        }else if((!fin) && (a < n)){
-            fin = true;
-            while (!(n % a == 0)){
-                n = a;
-                a = (n % a);
-            }
-            res = a;
         }
-
-        if (res == 1){
-            fin = true;
-        }else{
-            fin = false;
-        }
-
-        //ACABAR     RESOLDRE     AX = 1 (MOD N)
-
-      return -1; // TO DO
+        
+      return inversa; // TO DO
     }
 
     /*
@@ -593,7 +653,7 @@ class Entrega {
    */
   public static void main(String[] args) {
     Tema1.tests();
-    //Tema2.tests();
+    Tema2.tests();
     Tema3.tests();
   }
 
