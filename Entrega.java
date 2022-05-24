@@ -86,7 +86,7 @@ class Entrega {
                 }
 
             }
-            System.out.println("Exercici 1: " + fin);
+            System.out.println("Exercici 1 Tema 1: " + fin);
             return fin; // TO DO
         }
 
@@ -126,7 +126,7 @@ class Entrega {
                 fin = true;
             }
 
-            System.out.println("Exercici 2: " + fin);
+            System.out.println("Exercici 2 Tema 1: " + fin);
             return fin; // TO DO
         }
 
@@ -651,7 +651,7 @@ class Entrega {
    *
    * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
    */
-  public static void main(String[] args) {
+    public static void main(String[] args) {
     Tema1.tests();
     Tema2.tests();
     Tema3.tests();
