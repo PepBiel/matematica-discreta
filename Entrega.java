@@ -203,7 +203,7 @@ class Entrega {
                         int y_ = 0;
                         int q_gran;
                         int q_petit;
-                        while (!((yn * xn) % n == 0)){
+                        while (!(((yn * xn) % n) == 0)){
                             q_petit = (yn * xn) / n;
         
                             x_ = x_gran - (x_petit * q_petit);
@@ -233,7 +233,7 @@ class Entrega {
                         int y_ = 0;
                         int q_gran;
                         int q_petit;
-                        while (!(n % (yn * xn) == 0)){
+                        while (!((n % (yn * xn)) == 0)){
                             q_petit = n / (yn * xn);
         
                             x_ = x_gran - (x_petit * q_petit);
@@ -261,7 +261,7 @@ class Entrega {
             if (cont == 1) {
                 fin = true;
             }
-
+            System.out.println("Exercici 4 Tema 1: " + fin);
             return fin; // TO DO
         }
 
