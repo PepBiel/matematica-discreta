@@ -656,12 +656,12 @@ class Entrega {
     Tema1.tests();
     Tema2.tests();
     Tema3.tests();
-  }
+    }
 
   static void assertThat(boolean b) {
     if (!b)
       throw new AssertionError();
-  }
+    }
 }
 
 // vim: set textwidth=100 shiftwidth=2 expandtab :
