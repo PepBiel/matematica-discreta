@@ -26,9 +26,9 @@ import java.util.Set;
  *
  * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
- * - Nom 1: Josep Gabriel Fornés Reynés
- * - Nom 2: Antoni Bonet Trujillo
- * - Nom 3: Marc Sampol 
+ * - Nom 1:
+ * - Nom 2:
+ * - Nom 3:
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
@@ -90,10 +90,10 @@ class Entrega {
             return fin; // TO DO
         }
 
-        /*
-         * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
-         */
-        static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
+    /*
+     * És cert que ∃!x. ∀y. Q(y) -> P(x) ?
+     */
+    static boolean exercici2(int[] universe, Predicate<Integer> p, Predicate<Integer> q) {
 
             boolean fin = false;
             int cont2 = 0;
@@ -130,13 +130,13 @@ class Entrega {
             return fin; // TO DO
         }
 
-        /*
-         * És cert que ¬(∃x. ∀y. y ⊆ x) ?
-         *
-         * Observau que els membres de l'univers són arrays, tractau-los com conjunts i podeu suposar
-         * que cada un d'ells està ordenat de menor a major.
-         */
-        static boolean exercici3(int[][] universe) {
+    /*
+     * És cert que ¬(∃x. ∀y. y ⊆ x) ?
+     *
+     * Observau que els membres de l'univers són arrays, tractau-los com conjunts i podeu suposar
+     * que cada un d'ells està ordenat de menor a major.
+     */
+    static boolean exercici3(int[][] universe) {
 
             boolean existe = false;
 
@@ -177,10 +177,10 @@ class Entrega {
             return fin; // TO DO
         }
 
-        /*
-         * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
-         */
-        static boolean exercici4(int[] universe, int n) {
+    /*
+     * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
+     */
+    static boolean exercici4(int[] universe, int n) {
             
             boolean fin = false;
             int cont = 0;
@@ -266,7 +266,7 @@ class Entrega {
         }
 
 
-    /*
+   /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
@@ -339,31 +339,31 @@ class Entrega {
         );
       }
     }
-
+  
     /*
-   * Aquí teniu els exercicis del Tema 2 (Conjunts).
-   *
-   * De la mateixa manera que al Tema 1, per senzillesa tractarem els conjunts com arrays (sense
-   * elements repetits). Per tant, un conjunt de conjunts d'enters tendrà tipus int[][].
-   *
-   * Les relacions també les representarem com arrays de dues dimensions, on la segona dimensió
-   * només té dos elements. Per exemple
-   *   int[][] rel = {{0,0}, {1,1}, {0,1}, {2,2}};
-   * i també donarem el conjunt on està definida, per exemple
-   *   int[] a = {0,1,2};
-   *
-   * Les funcions f : A -> B (on A i B son subconjunts dels enters) les representam donant int[] a,
-   * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
-   * x és un enter d'a i el resultat f.apply(x) és un enter de b).
-   */
-  static class Tema2 {
-    /*
-     * És `p` una partició d'`a`?
+     * Aquí teniu els exercicis del Tema 2 (Conjunts).
      *
-     * `p` és un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
-     * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
+     * De la mateixa manera que al Tema 1, per senzillesa tractarem els conjunts com arrays (sense
+     * elements repetits). Per tant, un conjunt de conjunts d'enters tendrà tipus int[][].
+     *
+     * Les relacions també les representarem com arrays de dues dimensions, on la segona dimensió
+     * només té dos elements. Per exemple
+     *   int[][] rel = {{0,0}, {1,1}, {0,1}, {2,2}};
+     * i també donarem el conjunt on està definida, per exemple
+     *   int[] a = {0,1,2};
+     *
+     * Les funcions f : A -> B (on A i B son subconjunts dels enters) les representam donant int[] a,
+     * int[] b, i un objecte de tipus Function<Integer, Integer> que podeu avaluar com f.apply(x) (on
+     * x és un enter d'a i el resultat f.apply(x) és un enter de b).
      */
-    static boolean exercici1(int[] a, int[][] p) {
+    static class Tema2 {
+      /*
+       * És `p` una partició d'`a`?
+       *
+       * `p` és un array de conjunts, haureu de comprovar que siguin elements d'`a`. Podeu suposar que
+       * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
+       */
+      static boolean exercici1(int[] a, int[][] p) {
       return false; // TO DO
     }
 
@@ -408,140 +408,140 @@ class Entrega {
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
-      // Exercici 1
-      // `p` és una partició d'`a`?
-
-      assertThat(
-          exercici1(
-              new int[] { 1, 2, 3, 4, 5 },
-              new int[][] { {1, 2}, {3, 5}, {4} }
-          )
-      );
-
-      assertThat(
-          !exercici1(
-              new int[] { 1, 2, 3, 4, 5 },
-              new int[][] { {1, 2}, {5}, {1, 4} }
-          )
-      );
-
-      // Exercici 2
-      // és `rel` definida sobre `a` d'ordre parcial i `x` n'és el mínim?
-
-      ArrayList<int[]> divisibility = new ArrayList<int[]>();
-
-      for (int i = 1; i < 8; i++) {
-        for (int j = 1; j <= i; j++) {
-          if (i % j == 0) {
-            // i és múltiple de j, és a dir, j|i
-            divisibility.add(new int[] { i, j });
+        // Exercici 1
+        // `p` és una partició d'`a`?
+  
+        assertThat(
+            exercici1(
+                new int[] { 1, 2, 3, 4, 5 },
+                new int[][] { {1, 2}, {3, 5}, {4} }
+            )
+        );
+  
+        assertThat(
+            !exercici1(
+                new int[] { 1, 2, 3, 4, 5 },
+                new int[][] { {1, 2}, {5}, {1, 4} }
+            )
+        );
+  
+        // Exercici 2
+        // és `rel` definida sobre `a` d'ordre parcial i `x` n'és el mínim?
+  
+        ArrayList<int[]> divisibility = new ArrayList<int[]>();
+  
+        for (int i = 1; i < 8; i++) {
+          for (int j = 1; j <= i; j++) {
+            if (i % j == 0) {
+              // i és múltiple de j, és a dir, j|i
+              divisibility.add(new int[] { i, j });
+            }
           }
         }
+  
+        assertThat(
+            exercici2(
+                new int[] { 1, 2, 3, 4, 5, 6, 7 },
+                divisibility.toArray(new int[][] {}),
+                1
+            )
+        );
+  
+        assertThat(
+            !exercici2(
+                new int[] { 1, 2, 3 },
+                new int[][] { {1, 1}, {2, 2}, {3, 3}, {1, 2}, {2, 3} },
+                1
+            )
+        );
+  
+        assertThat(
+            !exercici2(
+                new int[] { 1, 2, 3, 4, 5, 6, 7 },
+                divisibility.toArray(new int[][] {}),
+                2
+            )
+        );
+  
+        // Exercici 3
+        // calcular l'antiimatge de `y`
+  
+        assertThat(
+            Arrays.equals(
+                new int[] { 0, 2 },
+                exercici3(
+                    new int[] { 0, 1, 2, 3 },
+                    new int[] { 0, 1 },
+                    x -> x % 2, // residu de dividir entre 2
+                    0
+                )
+            )
+        );
+  
+        assertThat(
+            Arrays.equals(
+                new int[] { },
+                exercici3(
+                    new int[] { 0, 1, 2, 3 },
+                    new int[] { 0, 1, 2, 3, 4 },
+                    x -> x + 1,
+                    0
+                )
+            )
+        );
+  
+        // Exercici 4
+        // classificar la funció en res/injectiva/exhaustiva/bijectiva
+  
+        assertThat(
+            exercici4(
+                new int[] { 0, 1, 2, 3 },
+                new int[] { 0, 1, 2, 3 },
+                x -> (x + 1) % 4
+            )
+            == BIJECTIVE
+        );
+  
+        assertThat(
+            exercici4(
+                new int[] { 0, 1, 2, 3 },
+                new int[] { 0, 1, 2, 3, 4 },
+                x -> x + 1
+            )
+            == INJECTIVE
+        );
+  
+        assertThat(
+            exercici4(
+                new int[] { 0, 1, 2, 3 },
+                new int[] { 0, 1 },
+                x -> x / 2
+            )
+            == SURJECTIVE
+        );
+  
+        assertThat(
+            exercici4(
+                new int[] { 0, 1, 2, 3 },
+                new int[] { 0, 1, 2, 3 },
+                x -> x <= 1 ? x+1 : x-1
+            )
+            == NOTHING_SPECIAL
+        );
       }
-
-      assertThat(
-          exercici2(
-              new int[] { 1, 2, 3, 4, 5, 6, 7 },
-              divisibility.toArray(new int[][] {}),
-              1
-          )
-      );
-
-      assertThat(
-          !exercici2(
-              new int[] { 1, 2, 3 },
-              new int[][] { {1, 1}, {2, 2}, {3, 3}, {1, 2}, {2, 3} },
-              1
-          )
-      );
-
-      assertThat(
-          !exercici2(
-              new int[] { 1, 2, 3, 4, 5, 6, 7 },
-              divisibility.toArray(new int[][] {}),
-              2
-          )
-      );
-
-      // Exercici 3
-      // calcular l'antiimatge de `y`
-
-      assertThat(
-          Arrays.equals(
-              new int[] { 0, 2 },
-              exercici3(
-                  new int[] { 0, 1, 2, 3 },
-                  new int[] { 0, 1 },
-                  x -> x % 2, // residu de dividir entre 2
-                  0
-              )
-          )
-      );
-
-      assertThat(
-          Arrays.equals(
-              new int[] { },
-              exercici3(
-                  new int[] { 0, 1, 2, 3 },
-                  new int[] { 0, 1, 2, 3, 4 },
-                  x -> x + 1,
-                  0
-              )
-          )
-      );
-
-      // Exercici 4
-      // classificar la funció en res/injectiva/exhaustiva/bijectiva
-
-      assertThat(
-          exercici4(
-              new int[] { 0, 1, 2, 3 },
-              new int[] { 0, 1, 2, 3 },
-              x -> (x + 1) % 4
-          )
-          == BIJECTIVE
-      );
-
-      assertThat(
-          exercici4(
-              new int[] { 0, 1, 2, 3 },
-              new int[] { 0, 1, 2, 3, 4 },
-              x -> x + 1
-          )
-          == INJECTIVE
-      );
-
-      assertThat(
-          exercici4(
-              new int[] { 0, 1, 2, 3 },
-              new int[] { 0, 1 },
-              x -> x / 2
-          )
-          == SURJECTIVE
-      );
-
-      assertThat(
-          exercici4(
-              new int[] { 0, 1, 2, 3 },
-              new int[] { 0, 1, 2, 3 },
-              x -> x <= 1 ? x+1 : x-1
-          )
-          == NOTHING_SPECIAL
-      );
     }
-  }
-
-  /*
-   * Aquí teniu els exercicis del Tema 3 (Aritmètica).
-   *
-   */
-  static class Tema3 {
+  
     /*
-     * Donat `a`, `b` retornau el màxim comú divisor entre `a` i `b`.
+     * Aquí teniu els exercicis del Tema 3 (Aritmètica).
      *
-     * Podeu suposar que `a` i `b` són positius.
      */
-    static int exercici1(int a, int b) {
+    static class Tema3 {
+      /*
+       * Donat `a`, `b` retornau el màxim comú divisor entre `a` i `b`.
+       *
+       * Podeu suposar que `a` i `b` són positius.
+       */
+      static int exercici1(int a, int b) {
         int res = 0;
         boolean fin = false;
         if ((!fin) && (a >= b)){
@@ -617,51 +617,50 @@ class Entrega {
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
      */
     static void tests() {
-      // Exercici 1
-      // `mcd(a,b)`
-
-      assertThat(
-              exercici1(2, 4) == 2
-      );
-
-      assertThat(
-              exercici1(1236, 984) == 12
-      );
-
-      // Exercici 2
-      // `a``x` + `b``y` = `c` té solució?
-
-      assertThat(
-              exercici2(4,2,2)
-      );
-      assertThat(
-              !exercici2(6,2,1)
-      );
-      // Exercici 3
-      // invers de `a` mòdul `n`
-      assertThat(exercici3(2, 5) == 3);
-      assertThat(exercici3(2, 6) == -1);
+        // Exercici 1
+        // `mcd(a,b)`
+  
+        assertThat(
+                exercici1(2, 4) == 2
+        );
+  
+        assertThat(
+                exercici1(1236, 984) == 12
+        );
+  
+        // Exercici 2
+        // `a``x` + `b``y` = `c` té solució?
+  
+        assertThat(
+                exercici2(4,2,2)
+        );
+        assertThat(
+                !exercici2(6,2,1)
+        );
+        // Exercici 3
+        // invers de `a` mòdul `n`
+        assertThat(exercici3(2, 5) == 3);
+        assertThat(exercici3(2, 6) == -1);
+      }
+    }
+  
+    /*
+     * Aquest mètode `main` conté alguns exemples de paràmetres i dels resultats que haurien de donar
+     * els exercicis. Podeu utilitzar-los de guia i també en podeu afegir d'altres (no els tendrem en
+     * compte, però és molt recomanable).
+     *
+     * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
+     */
+    public static void main(String[] args) {
+      Tema1.tests();
+      Tema2.tests();
+      Tema3.tests();
+    }
+  
+    static void assertThat(boolean b) {
+      if (!b)
+        throw new AssertionError();
     }
   }
-
-  /*
-   * Aquest mètode `main` conté alguns exemples de paràmetres i dels resultats que haurien de donar
-   * els exercicis. Podeu utilitzar-los de guia i també en podeu afegir d'altres (no els tendrem en
-   * compte, però és molt recomanable).
-   *
-   * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
-   */
-    
-   public static void main(String[] args) {
-    Tema1.tests();
-    Tema2.tests();
-    Tema3.tests();
-    }
-
-  static void assertThat(boolean b) {
-    if (!b)
-      throw new AssertionError();
-    }
-}
-
-// vim: set textwidth=100 shiftwidth=2 expandtab :
+  
+  // vim: set textwidth=100 shiftwidth=2 expandtab :
