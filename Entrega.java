@@ -178,10 +178,13 @@ class Entrega {
     /*
      * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
      */
+    //mes simple, anam mirant si XYx - Ny = 1 dins for
     static boolean exercici4(int[] universe, int n) {
         boolean fin = false;
         int cont = 0;
-        int mcd;
+        int cont2 = 0;
+        int a = 0;
+        int nn = n;
 
         for (int y = 0; (y < universe.length); y++) {
 
@@ -191,71 +194,41 @@ class Entrega {
 
                 int xn = universe[x];
 
-                if ((!fin) && ((yn * xn) >= n)){
-                    int x_gran = 1;
-                    int x_petit = 0;
-                    int x_ = 0;
-                    int y_gran = 0;
-                    int y_petit = 1;
-                    int y_ = 0;
-                    int q_gran;
-                    int q_petit;
-                    while (!(((yn * xn) % n) == 0)){
-                        q_petit = (yn * xn) / n;
-    
-                        x_ = x_gran - (x_petit * q_petit);
-                        y_ = y_gran - (y_petit * q_petit);
-    
-                        x_gran = x_petit;
-                        x_petit = x_;
-    
-                        y_gran = y_petit;
-                        y_petit = y_;
-    
-                        q_gran = q_petit;
-                    }
-                    //y ha de ser negativa
-                    mcd = ((xn * yn) * x_) - (n * y_);
-                    if ((mcd % 1) == 0){
-                        cont++;
-                    }
+                int res = 0;
+                if ((xn * yn) >= nn){
+                    res = (xn * yn) % nn;
+                    a = xn * yn;
+                        while (!(res == 0)){
+                            a = n;
+                            n = res;
+                            res = a % n;
+                        }
+                    res = n;
+                }else if((xn * yn) < nn){
+                    res = nn % (xn * yn);
+                    a = xn * yn;
+                        while (!(res == 0)){
+                            n = a;
+                            a = res;
+                            res = n % a;
+                        }
+                    res = a;
                 }
 
-                if((!fin) && ((yn * xn) < n)){
-                    int x_gran = 0;
-                    int x_petit = 1;
-                    int x_ = 0;
-                    int y_gran = 1;
-                    int y_petit = 0;
-                    int y_ = 0;
-                    int q_gran;
-                    int q_petit;
-                    while (!((n % (yn * xn)) == 0)){
-                        q_petit = n / (yn * xn);
-    
-                        x_ = x_gran - (x_petit * q_petit);
-                        y_ = y_gran - (y_petit * q_petit);
-    
-                        x_gran = x_petit;
-                        x_petit = x_;
-    
-                        y_gran = y_petit;
-                        y_petit = y_;
-    
-                        q_gran = q_petit;
-                    }
-                    //y ha de ser negativa
-                    mcd = ((xn * yn) * x_) - (n * y_);
-                    if ((mcd % 1) == 0){
-                        cont++;
-                    }
+                if ((res % 1) == 0){
+                    cont++;
                 }
-
             }
+
+            if (cont == universe.length){
+                cont2++;
+            }
+
+            cont = 0;
 
         }
 
-        if (cont == 1) {
+        if (cont2 == 1) {
             fin = true;
         }
         System.out.println("Exercici 4 Tema 1: " + fin);
@@ -596,7 +569,7 @@ class Entrega {
         }else{
             fin = false;
         }
-
+        System.out.println("Exercici 2 Tema 3: " + fin);
       return fin; // TO DO
     }
 
@@ -612,7 +585,7 @@ class Entrega {
                 inversa = i;
             }
         }
-        
+        System.out.println("Exercici 3 Tema 4: "+ inversa);
       return inversa; // TO DO
     }
 
@@ -655,7 +628,7 @@ class Entrega {
    * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
    */
   public static void main(String[] args) {
-    //Tema1.tests();
+    Tema1.tests();
     //Tema2.tests();
     Tema3.tests();
   }
