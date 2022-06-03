@@ -542,16 +542,20 @@ class Entrega {
         boolean fin = false;
         if (!fin && a >= b){
             fin = true;
-            while (!(a % b == 0)){
+            res = a % b;
+            while (res != 0){
                 a = b;
-                b = a % b;
+                b = res;
+                res = a % b;
             }
             res = b;
         }else if(!fin && a < b){
             fin = true;
-            while (b % a != 0){
+            res = b % a;
+            while (res != 0){
                 b = a;
-                a = b % a;
+                a = res;
+                res = b % a;
             }
             res = a;
         }
@@ -569,16 +573,20 @@ class Entrega {
         boolean fin = false;
         if ((!fin) && (a >= b)){
             fin = true;
-            while (!(a % b == 0)){
+            res = a % b;
+            while (!(res == 0)){
                 a = b;
-                b = (a % b);
+                b = res;
+                res = a % b;
             }
             res = b;
         }else if((!fin) && (a < b)){
             fin = true;
-            while (!(b % a == 0)){
+            res = b % a;
+            while (!(res == 0)){
                 b = a;
-                a = (b % a);
+                a = res;
+                res = b % a;
             }
             res = a;
         }
