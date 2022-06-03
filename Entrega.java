@@ -191,7 +191,7 @@ class Entrega {
 
                 int xn = universe[x];
 
-                if (((yn * xn) >= n)){
+                if ((!fin) && ((yn * xn) >= n)){
                     int x_gran = 1;
                     int x_petit = 0;
                     int x_ = 0;
@@ -221,7 +221,7 @@ class Entrega {
                     }
                 }
 
-                if(((yn * xn) < n)){
+                if((!fin) && ((yn * xn) < n)){
                     int x_gran = 0;
                     int x_petit = 1;
                     int x_ = 0;
@@ -540,18 +540,18 @@ class Entrega {
     static int exercici1(int a, int b) {
         int res = 0;
         boolean fin = false;
-        if ((!fin) && (a >= b)){
+        if (!fin && a >= b){
             fin = true;
             while (!(a % b == 0)){
                 a = b;
-                b = (a % b);
+                b = a % b;
             }
             res = b;
-        }else if((!fin) && (a < b)){
+        }else if(!fin && a < b){
             fin = true;
-            while (!(b % a == 0)){
+            while (b % a != 0){
                 b = a;
-                a = (b % a);
+                a = b % a;
             }
             res = a;
         }
@@ -647,8 +647,8 @@ class Entrega {
    * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
    */
   public static void main(String[] args) {
-    Tema1.tests();
-    Tema2.tests();
+    //Tema1.tests();
+    //Tema2.tests();
     Tema3.tests();
   }
 
