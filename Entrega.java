@@ -564,7 +564,7 @@ class Entrega {
             res = a;
         }
 
-        if ((res % c) == 0){
+        if ((c % res) == 0){
             fin = true;
         }else{
             fin = false;
@@ -618,6 +618,164 @@ class Entrega {
       assertThat(exercici3(2, 5) == 3);
       assertThat(exercici3(2, 6) == -1);
     }
+    
+  }
+
+  static class Tema4 {
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
+     */
+    static int[] exercici1(int[][] A) {
+
+        int uns = 0;
+        int num = 0;
+
+        for(int i = 0; i < A.length; i++){
+            for(int j = 0 + i; j < A.length; j++){
+                num = A[i][j];
+
+                if(num == 1){
+                    uns++;
+                }
+            }
+        }
+        System.out.println("Exercici 1 Tema 4: {" + A.length + ", " + uns + "}");
+      return new int[]{A.length, uns}; // TO DO
+    }
+
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
+     */
+    static boolean exercici2(int[][] A) {
+
+        int uns = 0;
+        int num = 0;
+        boolean fin = true;
+
+        for(int i = 0; (i < A.length) && (fin); i++){
+            for(int j = 0; (j < A.length) && (fin); j++){
+                num = A[i][j];
+
+                if(num == 1){
+                    uns++;
+                }
+            }
+
+            if (!((uns % 2) == 0)){
+                fin = false;
+            }
+        }
+
+        System.out.println("Exercici 2 Temaa 4: " + fin);
+      return fin; // TO DO
+    }
+
+    /*
+     * Donat `n` el número de fulles d'un arbre arrelat i `d` el nombre de fills dels nodes interiors,
+     * retornau el nombre total de vèrtexos de l'arbre
+     *
+     */
+    /*static int exercici3(int n, int d) {
+      return -1; // TO DO
+    }*/
+
+    /*
+     * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
+     */
+    static boolean exercici4(int[][] A) {
+        int uns = 0;
+        int num = 0;
+        boolean trobat = false;
+        boolean fin = true;
+        boolean cicleTrobat = false;
+        int cicle[] = new int[10];
+        int ind = 0;
+        int cont = 0;
+        int cont2 = 0;
+        boolean noCicle = false;
+
+        while((!cicleTrobat) && (!noCicle)){
+
+            for(int i = 0; (i < A.length) && (fin); i++){
+                cont = 0;
+                trobat = false;
+    
+                for(int j = 0; (j < A.length) && (!trobat); j++){
+                    
+                    num = A[i][j];
+    
+                    if((num == 1) && (!((i - 1) == j))){
+                        A[i][j] = 0;
+                        trobat = true;
+                        cicle[ind] = j;
+                        ind++;
+                    }else{
+                        cont++;
+                    }
+
+                    if (cont == A.length){
+                        cont2++;
+                    }
+                }
+            }
+
+            if(cont2 == A.length){
+                noCicle = true;
+            }
+
+            for (int i = 0; (i < cicle.length) && (!cicleTrobat); i++){
+                for(int j = 0; (j < cicle.length) && (!cicleTrobat); j++){
+                    if (!(j == i)){
+                        if(cicle[i] == cicle[j])  {
+                            cicleTrobat = true;
+                        }
+                    }
+                }
+            }
+
+        }
+        System.out.println("Exercici 4 Tema 4: " + cicleTrobat);
+        return cicleTrobat; // TO DO
+    }
+    /*
+     * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
+     */
+    static void tests() {
+      // Exercici 1
+      // `ordre i mida`
+
+      assertThat(
+              Arrays.equals(exercici1(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}}), new int[] {3, 2})
+      );
+
+      assertThat(
+              Arrays.equals(exercici1(new int[][] { {0, 1, 0, 1}, {1, 0, 1, 1}, {0 , 1, 0, 1}, {1, 1, 1, 0}}), new int[] {4, 5})
+      );
+
+      // Exercici 2
+      // `Es eulerià?`
+
+      assertThat(
+              exercici2(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
+      );
+      assertThat(
+              !exercici2(new int[][] { {0, 1, 0}, {1, 0, 1}, {0,1, 0}})
+      );
+      // Exercici 3
+      // `Quants de nodes té l'arbre?`
+      /*assertThat(exercici3(5, 2) == 9);
+      assertThat(exercici3(7, 3) == 10);*/
+
+      // Exercici 4
+      // `Conté algún cicle?`
+      assertThat(
+              exercici4(new int[][] { {0, 1, 1}, {1, 0, 1}, {1, 1, 0}})
+      );
+      assertThat(
+              !exercici4(new int[][] { {0, 1, 0}, {1, 0, 1}, {0, 1, 0}})
+      );
+
+    }
   }
 
   /*
@@ -628,9 +786,10 @@ class Entrega {
    * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
    */
   public static void main(String[] args) {
-    Tema1.tests();
+    //Tema1.tests();
     //Tema2.tests();
     Tema3.tests();
+    Tema4.tests();
   }
 
   static void assertThat(boolean b) {
