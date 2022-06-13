@@ -333,6 +333,45 @@ class Entrega {
      * tant `a` com cada un dels elements de `p` està ordenat de menor a major.
      */
     static boolean exercici1(int[] a, int[][] p) {
+        int con = a.length;
+        boolean[] esta = new boolean[con];
+        for (int i = 0; i < con; i++) {
+            esta[i] = false;
+        }
+        boolean sol;
+        int i = 0;
+        int peq = a[0], gran = a[con - 1];
+        for (int ay : a){
+            boolean aparece = false;
+            for (int[] py : p) {
+                for (int pyy : py) {
+                    if (pyy >= peq && pyy <= gran) {
+                        if (ay == pyy) {
+                            aparece = true;
+                            if (!esta[i]) {
+                                esta[i] = true;
+                            } else {
+                                sol = false;
+                                System.out.println("Exercici 1 tema 2 :"+sol);
+                                return sol;
+                            }
+                            break;
+                        }
+                    }else{
+                        sol = false;
+                        System.out.println("Exercici 1 tema 2 :"+sol);
+                        return sol;
+                    }
+                }
+            }
+            if (!aparece) {
+                sol = false; 
+                System.out.println("Exercici 1 tema 2 :"+sol);
+                return sol;
+            }
+            i++;
+        }
+      
       return false; // TO DO
     }
 
