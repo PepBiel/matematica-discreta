@@ -391,7 +391,30 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-      return new int[]{}; // TO DO
+        int a = 0;
+        for (int i : dom) {
+            if (y == f.apply(i)){
+                a++;
+            }
+        }
+
+        int[] res = new int[a];
+
+        if (a == 0){
+            System.out.println("Exercici 3 tema 2");
+            return res;
+        }else{
+            int jc = 0;
+            for (int i : dom) {
+                if (y == f.apply (i)) {
+                    res [jc] = i;
+                }
+            }
+
+        }
+        Arrays.sort(res);
+        System.out.println("Exercici 3 tema 2" );
+        return res; // TO DO
     }
 
     /*
@@ -428,13 +451,6 @@ class Entrega {
       );
 
       assertThat(
-          exercici1(
-              new int[] { 6, 7, 8, 9, 10 },
-              new int[][] { {1}, {7, 10}, {9}, {8} }
-          )
-      );
-
-      assertThat(
           !exercici1(
               new int[] { 1, 2, 3, 4, 5 },
               new int[][] { {1, 2}, {5}, {1, 4} }
@@ -455,7 +471,7 @@ class Entrega {
         }
       }
 
-      assertThat(
+      /*assertThat(
           exercici2(
               new int[] { 1, 2, 3, 4, 5, 6, 7 },
               divisibility.toArray(new int[][] {}),
@@ -477,7 +493,7 @@ class Entrega {
               divisibility.toArray(new int[][] {}),
               2
           )
-      );
+      );*/
 
       // Exercici 3
       // calcular l'antiimatge de `y`
