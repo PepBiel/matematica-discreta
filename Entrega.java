@@ -338,7 +338,7 @@ class Entrega {
         for (int i = 0; i < con; i++) {
             esta[i] = false;
         }
-        boolean sol;
+        boolean sol = true;
         int i = 0;
         int peq = a[0], gran = a[con - 1];
         for (int ay : a){
@@ -371,8 +371,9 @@ class Entrega {
             }
             i++;
         }
-      
-      return false; // TO DO
+
+        System.out.println("Exercici 1 tema 2 :" + sol);
+      return sol; // TO DO
     }
 
     /*
@@ -423,6 +424,13 @@ class Entrega {
           exercici1(
               new int[] { 1, 2, 3, 4, 5 },
               new int[][] { {1, 2}, {3, 5}, {4} }
+          )
+      );
+
+      assertThat(
+          exercici1(
+              new int[] { 6, 7, 8, 9, 10 },
+              new int[][] { {1}, {7, 10}, {9}, {8} }
           )
       );
 
@@ -826,7 +834,7 @@ class Entrega {
    */
   public static void main(String[] args) {
     //Tema1.tests();
-    //Tema2.tests();
+    Tema2.tests();
     Tema3.tests();
     Tema4.tests();
   }
