@@ -71,15 +71,16 @@ class Entrega {
 
                     Integer yn = universe[y];
 
-                    if (!(p.test(xn, yn))) {
+                    if (!(p.test(xn, yn))) {    //Miram  el resultat del predicat P
                         a = false;
                     }
 
-                    if (!(q.test(xn)) && (r.test(yn))) {
+                    if (!(q.test(xn)) && (r.test(yn))) {  //Miram si la AND es compleix
                         b = false;
                     }
 
-                    if ((a) && (!(b))) {
+                    if ((a) && (!(b))) {  //Si no es compleix aquesta implicació, el boleà fin serà fals i ja no entrarà al bucle, ja que no serà veritat
+                                            //que per tot a,b es compleix. Quan n'hi ha un que no es compleix, ja no és per a tot.
                         fin = false;
                     }
 
@@ -106,11 +107,11 @@ class Entrega {
 
                 int yn = universe[y];
 
-                if (!((q.test(yn) == true) && (p.test(xn) == false))) {
+                if (!((q.test(yn) == true) && (p.test(xn) == false))) {  //cada pic que es compleix augmentam el contador per així poder mirar si s'ha complit tots els pics
                     cont++;
                 }
 
-                if (cont == universe.length) {
+                if (cont == universe.length) { //si s'han complit tots els pics, s'augmentarà el contador, però colem que aquest contador sigui 1, ja que és per un únic x
                     cont2++;
 
                 }
@@ -121,7 +122,7 @@ class Entrega {
 
         }
 
-        if (cont2 == 1) {
+        if (cont2 == 1) {  //Ja que volem que sigui en un únic x, si es compleix un pic, serà vertader
             fin = true;
         }
 
@@ -136,31 +137,38 @@ class Entrega {
      * que cada un d'ells està ordenat de menor a major.
      */
     static boolean exercici3(int[][] universe) {
-        boolean existe = false;
+        boolean ex = false;
 
         boolean fin = false;
         for (int[] y : universe) {
+
             for (int[] x : universe) {
+
                 if (x.length < y.length) {
-                    existe = false;
+
+                    ex = false;
+
                 } else {
+
                     int n = 0;
                     for (int i = 0; i < y.length && n != y.length; i++) {
+
                         for (int j = 0; j < x.length; j++) {
+
                             if (y[i] == x[j]) {
                                 n++;
                             }
                         }
                         if (n == y.length) {
-                            existe = true;
+                            ex = true;
                             break;
                         } else {
-                            existe = false;
+                            ex = false;
                         }
                     }
                 }
             }
-            if (!existe) {
+            if (!ex) {
                 fin = false;
                 System.out.println("Exercici 3 Tema 1: " + !fin);
                 return !fin;
@@ -178,59 +186,28 @@ class Entrega {
     /*
      * És cert que ∀x. ∃!y. x·y ≡ 1 (mod n) ?
      */
-    //mes simple, anam mirant si XYx - Ny = 1 dins for
     static boolean exercici4(int[] universe, int n) {
-        boolean fin = false;
-        int cont = 0;
-        int cont2 = 0;
-        int a = 0;
-        int nn = n;
+        int cont;
+        boolean fin = true;
 
-        for (int y = 0; (y < universe.length); y++) {
-
-            int yn = universe[y];
-
-            for (int x = 0; (x < universe.length); x++) {
-
-                int xn = universe[x];
-
-                int res = 0;
-                if ((xn * yn) >= nn){
-                    res = (xn * yn) % nn;
-                    a = xn * yn;
-                        while (!(res == 0)){
-                            a = n;
-                            n = res;
-                            res = a % n;
-                        }
-                    res = n;
-                }else if((xn * yn) < nn){
-                    res = nn % (xn * yn);
-                    a = xn * yn;
-                        while (!(res == 0)){
-                            n = a;
-                            a = res;
-                            res = n % a;
-                        }
-                    res = a;
-                }
-
-                if ((res % 1) == 0){
-                    cont++;
-                }
-            }
-
-            if (cont == universe.length){
-                cont2++;
-            }
-
+        for (int x = 1; (x <= universe.length) && (fin); x++) {
+            
             cont = 0;
 
+            for (int y = 1; y <= universe.length; y++) {
+
+                if ((x * y) % n == 1) {     //Si el residu de x*y / n = 1, s'haurà complit la condició i augmentam 
+                                            //el contador, ja que hem de mirar els pics que es compleix perque volem que sols es complesqui 1 pic
+                    cont++;
+                }
+
+            }
+
+            if (cont != 1){     //Miram si es compleix per una sola y
+                fin = false;
+            }
         }
 
-        if (cont2 == 1) {
-            fin = true;
-        }
         System.out.println("Exercici 4 Tema 1: " + fin);
         return fin; // TO DO
     }
@@ -382,7 +359,59 @@ class Entrega {
      * Podeu soposar que `x` pertany a `a` i que `a` està ordenat de menor a major.
      */
     static boolean exercici2(int[] a, int[][] rel, int x) {
-      return false; // TO DO
+        
+        boolean reflexiva = true;
+        boolean antisimetrica = true;
+        boolean transitiva = true;
+        boolean fin = true;
+
+        //Miram si es reflexiva
+        for (int i = 0; i < a.length; i++) {
+            if (!relacio(a[i], a[i], rel)) {
+                reflexiva = false;
+            }
+        }
+
+        //Miram si és antisimètrica
+        for (int i = 0; i < rel.length - 1; i++) {
+            for (int j = i + 1; j < rel.length; j++) {
+                if (rel[i][0] == rel[j][1] && rel[i][1] == rel[j][0]) {
+                    antisimetrica = false;
+                }
+            }
+        }
+
+        //Miram si és transitiva
+        for (int[] rel1 : rel) {
+            for (int[] rel2 : rel) {
+                if (rel1[1] == rel2[0] && !relacio(rel1[0], rel2[1], rel)) {
+                    transitiva = false;
+                }
+            }
+        }
+        
+        //Si no es compleixen totes les condicions, el resultat serà fals
+        if((!reflexiva) || (!antisimetrica) || (!transitiva)){
+            fin = false;
+        }
+        
+        for (int i = 0; i < a.length; i++) {
+            if (!relacio(x, a[i], rel)) {
+                fin = false;
+            }
+        }
+        System.out.println("Exercici 2 Tema 2: " + fin);
+        return fin; // TO DO
+    }
+
+    //Mètode que ens diu si els paràmetres a i b passats per paràmetre estan relacionats amn l'array rel
+    private static boolean relacio(int i, int j, int[][] rel) {
+        for (int[] rela : rel) {
+            if (rela[0] == i && rela[1] == j) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -401,7 +430,6 @@ class Entrega {
         int[] res = new int[a];
 
         if (a == 0){
-            System.out.println("Exercici 3 tema 2");
             return res;
         }else{
             int jc = 0;
@@ -413,7 +441,6 @@ class Entrega {
 
         }
         Arrays.sort(res);
-        System.out.println("Exercici 3 tema 2" );
         return res; // TO DO
     }
 
@@ -433,7 +460,39 @@ class Entrega {
     static final int BIJECTIVE = INJECTIVE + SURJECTIVE;
 
     static int exercici4(int[] dom, int[] codom, Function<Integer, Integer> f) {
-      return -1; // TO DO
+        
+        boolean injectiva = true;
+        boolean exhaustiva = true;
+        int fin;
+
+        //Es injectiva?
+        for (int i = 0; (i < codom.length) && (injectiva); i++) {
+            if (exercici3(dom, codom, f, codom[i]).length > 1) {
+                injectiva = false;
+            }
+        }
+
+        //Es exhaustiva?
+        for (int i = 0; (i < codom.length) && (exhaustiva); i++) {
+            if (exercici3(dom, codom, f, codom[i]).length < 1) {
+                exhaustiva = false;
+            }
+        }        
+        
+        //Si es exhaustiva i injectiva, serà bijectiva
+        if (injectiva && exhaustiva) {
+            fin = BIJECTIVE;
+        }else if (injectiva && !exhaustiva) { //Si es injectiva i no exhaustiva, serà injectiva
+            fin = INJECTIVE;
+        }else if (!injectiva && exhaustiva) {  //Si no és exhaustiva i és injectiva, serà echaustiva
+            fin = SURJECTIVE;
+        }else{  //Si no es ningun dels altres
+            fin = NOTHING_SPECIAL;
+        }
+
+        //Si es exhaustiva i injectiva, serà bijectiva
+        System.out.println("Exercici 4 Tema 2: " + fin);
+        return fin; // TO DO
     }
 
     /*
@@ -471,7 +530,7 @@ class Entrega {
         }
       }
 
-      /*assertThat(
+      assertThat(
           exercici2(
               new int[] { 1, 2, 3, 4, 5, 6, 7 },
               divisibility.toArray(new int[][] {}),
@@ -493,7 +552,7 @@ class Entrega {
               divisibility.toArray(new int[][] {}),
               2
           )
-      );*/
+      );
 
       // Exercici 3
       // calcular l'antiimatge de `y`
@@ -648,7 +707,7 @@ class Entrega {
                 inversa = i;
             }
         }
-        System.out.println("Exercici 3 Tema 4: "+ inversa);
+        System.out.println("Exercici 3 Tema 3: "+ inversa);
       return inversa; // TO DO
     }
 
@@ -738,67 +797,62 @@ class Entrega {
      * retornau el nombre total de vèrtexos de l'arbre
      *
      */
-    /*static int exercici3(int n, int d) {
-      return -1; // TO DO
-    }*/
+    //Per poder solucionar aquest exercici, hem de saber que E = V-1 , 2E = Sumatori del nombre de graus dels nodes
+    static int exercici3(int n, int d) {
+        int vertex;
+
+        //tenim que E = (n + 1 + k) - 1   ------  (n + 1 + k) = V  --------  el +1 (referència a l'arrel), es pot anular amb el -1
+        //aixi en quedaria que E = n + k   ------   k = vertex interiors
+
+        //Amb l'altre formula treum que 2 (n + k) = (n + d) + (d + 1)k   ----  (n + d)  suma de les fullees amb els fils dels vertex interiors
+        //    (d + 1)k  -------  nombre de fiils dels vertex + 1 vertex pare. Tot això multiplicat per els vertex interiors
+
+        //aixi ens queda que: 2n - (n + d) = (d + 1)k - 2)k   ------   k = [2n - (n + d)]/[(d + 1) - 2]
+
+        int a = 2*n;
+        int b = n+d;
+        int c = d + 1;
+
+        vertex = (a - b)/(c - 2);
+
+        //Així tendrem el nombre de vertex interiors, i sols ens toca sumar-ho amb els vertex restants
+
+        vertex = vertex + n + 1;
+
+        System.out.println("Exercici 3 Tema 4: " + vertex);
+      return vertex; // TO DO
+    }
 
     /*
      * Donada una matriu d'adjacencia `A` d'un graf connex no dirigit, digau si el graf conté algún cicle.
      */
+
+    //Hem de mirar si el que ens donen és un arbre o no. Per això hem de mirar 
+    //si el nombre d'arestes és = al nombre de vèrtex - 1
     static boolean exercici4(int[][] A) {
-        int uns = 0;
-        int num = 0;
-        boolean trobat = false;
-        boolean fin = true;
-        boolean cicleTrobat = false;
-        int cicle[] = new int[10];
-        int ind = 0;
+        
+        boolean fin;
         int cont = 0;
-        int cont2 = 0;
-        boolean noCicle = false;
 
-        while((!cicleTrobat) && (!noCicle)){
-
-            for(int i = 0; (i < A.length) && (fin); i++){
-                cont = 0;
-                trobat = false;
-    
-                for(int j = 0; (j < A.length) && (!trobat); j++){
-                    
-                    num = A[i][j];
-    
-                    if((num == 1) && (!((i - 1) == j))){
-                        A[i][j] = 0;
-                        trobat = true;
-                        cicle[ind] = j;
-                        ind++;
-                    }else{
-                        cont++;
-                    }
-
-                    if (cont == A.length){
-                        cont2++;
-                    }
-                }
-            }
-
-            if(cont2 == A.length){
-                noCicle = true;
-            }
-
-            for (int i = 0; (i < cicle.length) && (!cicleTrobat); i++){
-                for(int j = 0; (j < cicle.length) && (!cicleTrobat); j++){
-                    if (!(j == i)){
-                        if(cicle[i] == cicle[j])  {
-                            cicleTrobat = true;
-                        }
-                    }
+        for (int i = 0; i < A.length; i++){ //Miram les arestes que té el sistema que ens han passat
+            for (int j = 0; j < A.length; j++){
+                if (A[i][j] == 1){
+                    A[i][j] = 0;
+                    A[j][i] = 0;
+                    cont++;
                 }
             }
 
         }
-        System.out.println("Exercici 4 Tema 4: " + cicleTrobat);
-        return cicleTrobat; // TO DO
+
+        if(cont == (A.length - 1)){     //Si les arestes són iguals al vertex - 1, doncs es tractarà d'un arbre i no hi haurà cao cicle
+            fin = false;
+        }else{
+            fin = true;
+        }
+
+        System.out.println("Exercici 4 Tema 4: " + fin);
+        return fin; // TO DO
     }
     /*
      * Aquí teniu alguns exemples i proves relacionades amb aquests exercicis (vegeu `main`)
@@ -826,8 +880,8 @@ class Entrega {
       );
       // Exercici 3
       // `Quants de nodes té l'arbre?`
-      /*assertThat(exercici3(5, 2) == 9);
-      assertThat(exercici3(7, 3) == 10);*/
+      assertThat(exercici3(5, 2) == 9);
+      assertThat(exercici3(7, 3) == 10);
 
       // Exercici 4
       // `Conté algún cicle?`
@@ -849,7 +903,7 @@ class Entrega {
    * Podeu aprofitar el mètode `assertThat` per comprovar fàcilment que un valor sigui `true`.
    */
   public static void main(String[] args) {
-    //Tema1.tests();
+    Tema1.tests();
     Tema2.tests();
     Tema3.tests();
     Tema4.tests();
