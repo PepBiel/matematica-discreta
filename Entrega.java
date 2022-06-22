@@ -138,8 +138,8 @@ class Entrega {
      */
     static boolean exercici3(int[][] universe) {
         boolean ex = false;
-
-        boolean fin = false;
+        boolean fin;
+        boolean f = false;
         for (int[] y : universe) {
 
             for (int[] x : universe) {
@@ -169,16 +169,17 @@ class Entrega {
                 }
             }
             if (!ex) {
-                fin = false;
-                System.out.println("Exercici 3 Tema 1: " + !fin);
-                return !fin;
+                f = false;
+                fin = !f;
+                System.out.println("Exercici 3 Tema 1: " + fin);
+                return fin;
             } else {
-                fin = true;
+                f = true;
             }
 
         }
 
-        fin = !fin;
+        fin = !f;
         System.out.println("Exercici 3 Tema 1: " + fin);
         return fin; // TO DO
     }
@@ -312,7 +313,7 @@ class Entrega {
     static boolean exercici1(int[] a, int[][] p) {
         int con = a.length;
         boolean[] esta = new boolean[con];
-        for (int i = 0; i < con; i++) {
+        for (int i = 0; i < con; i++) { //Posam l'array de booleans a false
             esta[i] = false;
         }
         boolean sol = true;
@@ -323,9 +324,9 @@ class Entrega {
             for (int[] py : p) {
                 for (int pyy : py) {
                     if (pyy >= peq && pyy <= gran) {
-                        if (ay == pyy) {
+                        if (ay == pyy) {   //Si a = a lo que hi ha a dedins p, sabem que hi apareix
                             aparece = true;
-                            if (!esta[i]) {
+                            if (!esta[i]) {   //Posam l'array de booleans a true a la casella que toca
                                 esta[i] = true;
                             } else {
                                 sol = false;
@@ -334,14 +335,14 @@ class Entrega {
                             }
                             break;
                         }
-                    }else{
+                    }else{  //Si no es compleix retornam fals
                         sol = false;
                         System.out.println("Exercici 1 tema 2 :"+sol);
                         return sol;
                     }
                 }
             }
-            if (!aparece) {
+            if (!aparece) {     //Si l'element de a no ha estat dions p, retornam false
                 sol = false; 
                 System.out.println("Exercici 1 tema 2 :"+sol);
                 return sol;
@@ -421,22 +422,22 @@ class Entrega {
      * que `y` pertany a `codom` i que tant `dom` com `codom` també estàn ordenats de menor a major.
      */
     static int[] exercici3(int[] dom, int[] codom, Function<Integer, Integer> f, int y) {
-        int a = 0;
+        int cont = 0;
         for (int i : dom) {
-            if (y == f.apply(i)){
-                a++;
+            if (y == f.apply(i)){   //Si y = a lo que hi ha dins f, se suma un contador
+                cont++;
             }
         }
 
-        int[] res = new int[a];
+        int[] res = new int[cont];
 
-        if (a == 0){
+        if (cont == 0){
             return res;
         }else{
-            int jc = 0;
+            int j = 0;
             for (int i : dom) {
-                if (y == f.apply (i)) {
-                    res [jc] = i;
+                if (y == f.apply (i)) {  //Anma ficant els elemets que són iguals a y dins l'array per així poder retornar-la
+                    res [j] = i;
                 }
             }
 
@@ -754,13 +755,14 @@ class Entrega {
     /*
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, retornau l'ordre i la mida del graf.
      */
+    //L'ordre serà la dimensió de la matriu d'adjecència i la mida seràn els nombres d'arestes
     static int[] exercici1(int[][] A) {
 
         int uns = 0;
         int num = 0;
 
         for(int i = 0; i < A.length; i++){
-            for(int j = 0 + i; j < A.length; j++){
+            for(int j = 0 + i; j < A.length; j++){  //feim j = 0 + i, ja que volem no volem mirar les arestes entre els nodes que ja hem mirat
                 num = A[i][j];
 
                 if(num == 1){
@@ -775,6 +777,7 @@ class Entrega {
     /*
      * Donada una matriu d'adjacencia `A` d'un graf no dirigit, digau si el graf es eulerià.
      */
+    //Per saber si és un graf eulerià, hem de mirar que els graus dels noides siguin pars
     static boolean exercici2(int[][] A) {
 
         int uns = 0;
@@ -790,7 +793,7 @@ class Entrega {
                 }
             }
 
-            if (!((uns % 2) == 0)){
+            if (!((uns % 2) == 0)){//Miram si el grau dels nodes és par
                 fin = false;
             }
         }
