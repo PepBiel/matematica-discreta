@@ -26,9 +26,9 @@ import java.util.Set;
  *
  * Podeu fer aquesta entrega en grups de com a màxim 3 persones, i necessitareu com a minim Java 8.
  * Per entregar, posau a continuació els vostres noms i entregau únicament aquest fitxer.
- * - Nom 1:
- * - Nom 2:
- * - Nom 3:
+ * - Nom 1: Josep Gabriel Fornés Reynés
+ * - Nom 2: Antoni Bonet Trujillo
+ * - Nom 3: Marc Sampol Villalonga
  *
  * L'entrega es farà a través d'una tasca a l'Aula Digital abans de la data que se us hagui
  * comunicat i vos recomanam que treballeu amb un fork d'aquest repositori per seguir més fàcilment
@@ -395,6 +395,7 @@ class Entrega {
             fin = false;
         }
         
+        //Miram si és minim
         for (int i = 0; i < a.length; i++) {
             if (!relacio(x, a[i], rel)) {
                 fin = false;
@@ -635,10 +636,12 @@ class Entrega {
     static int exercici1(int a, int b) {
         int res = 0;
         boolean fin = false;
+
+        //Si a >= b, entra aqui, ja que s'ha de fer sa divisió: num gran / num petit
         if (!fin && a >= b){
             fin = true;
             res = a % b;
-            while (res != 0){
+            while (res != 0){  //Trobarem el mcd si el residu es 0, així que fins q no ho trobem seguim fent divisions
                 a = b;
                 b = res;
                 res = a % b;
@@ -663,6 +666,8 @@ class Entrega {
      *
      * Podeu suposar que `a`, `b` i `c` són positius.
      */
+    //Tendrà solució si mcd de a,b és divisible entre c
+    //Així que feim el mateix que a l'exercici anterior, però al final miram si mcd es divisible entre c
     static boolean exercici2(int a, int b, int c) {
         int res = 0;
         boolean fin = false;
@@ -686,7 +691,7 @@ class Entrega {
             res = a;
         }
 
-        if ((c % res) == 0){
+        if ((c % res) == 0){    //Serà solució si el residu de dividir c / mcd(a,b) és igual a 0.
             fin = true;
         }else{
             fin = false;
@@ -700,14 +705,16 @@ class Entrega {
      *
      * Retornau l'invers sempre entre 1 i `n-1`, en cas que no existeixi retornau -1
      */
+    //Para obtenir l'inversa, hem de fer  A * B mod N, amb B per valors entre 0 i N-1
+    //L'invers modular de A mod N es el valor de B que fa que se complesqui que A * B mod N = 1
     static int exercici3(int a, int n) {
         int inversa = -1;
-        for (int i = 0;(inversa == -1) && (i < n); i++){
+        for (int i = 0; (inversa == -1) && (i < n); i++){
             if(((a * i) % n) == 1){
                 inversa = i;
             }
         }
-        System.out.println("Exercici 3 Tema 3: "+ inversa);
+        System.out.println("Exercici 3 Tema 3: " + inversa);
       return inversa; // TO DO
     }
 
